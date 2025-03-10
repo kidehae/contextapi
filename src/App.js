@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext, useState } from "react";
+import Provider, { dataProvider } from "./Provider";
+import "./App.css";
 
 function App() {
+  const { status, setStatus } = useContext(dataProvider);
+  const [text, setText] = useState("Please log in");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <p>{text}</p>
+      <button
+        onClick={() => {
+          setStatus(status === "Login" ? "Logout" : "Login");
+          setText(
+            text === "Please log in" ? "Welcome, User!" : "Please log in"
+          );
+        }}
+      >
+        {" "}
+        {status}
+      </button>
+    </>
   );
 }
 
