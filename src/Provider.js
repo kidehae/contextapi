@@ -3,12 +3,12 @@ import App from "./App";
 
 export const dataProvider = createContext();
 
-const Provider = () => {
+const Provider = ({ children }) => {
   const [status, setStatus] = useState("Login");
   return (
     <>
       <dataProvider.Provider value={{ status, setStatus }}>
-        <App />
+        {children}
       </dataProvider.Provider>
     </>
   );
